@@ -136,7 +136,7 @@ AppDispatcher.register(function(action) {
           JSON.stringify(_colors.list));
       }
 
-      navigate('/' + _colors.getHexValues().join(','));
+      _updateUrlTo(_colors.getHexValues().join(','));
       break;
 
     case AppConstants.ADD_COLOR:
