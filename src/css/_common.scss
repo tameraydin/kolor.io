@@ -1,0 +1,18 @@
+$light: #fff;
+$dark: #000;
+
+$transition-duration: .5s;
+$measure: 20px;
+$font-size: 1em;
+
+$hidden: 0.01;
+$transparent: 0.4;
+$visible: 0.99;
+
+$layout-breakpoint-sm: 600px;
+$layout-breakpoint-md: 960px;
+
+// cross-module values
+$button-size: 30px;
+$line-width: $button-size / 10;
+$menu-z-index: 1;

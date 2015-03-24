@@ -1,0 +1,149 @@
+@import '_common';
+
+@mixin thumb($ratio) {
+  border: none;
+  height: $measure / $ratio;
+  width: $measure / $ratio;
+  background: transparent;
+  border-radius: $measure / $ratio;
+  cursor: ew-resize;
+}
+
+@mixin track($ratio) {
+  height: $measure / $ratio;
+  background: transparent;
+  border: none;
+  border-radius: $measure / $ratio;
+  cursor: pointer;
+}
+
+@mixin shrink-input($ratio) {
+  margin-top: $measure / ($ratio * 2);
+
+  &::-webkit-slider-runnable-track {
+    @include track($ratio);
+  }
+
+  &::-moz-range-track {
+    @include track($ratio);
+  }
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    @include thumb($ratio);
+  }
+
+  &::-moz-range-thumb {
+    @include thumb($ratio);
+  }
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  background: transparent;
+  margin-top: $measure / 2;
+
+  &::-webkit-slider-runnable-track {
+    @include track(1);
+  }
+
+  &::-moz-range-track {
+    @include track(1);
+  }
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    @include thumb(1);
+  }
+
+  &::-moz-range-thumb {
+    @include thumb(1);
+  }
+
+  &::-moz-focus-outer {
+    border: 0;
+  }
+}
+
+.container--narrow {
+
+  input[type=range] {
+    @include shrink-input(1.5);
+  }
+}
+
+@media
+(min-width: $layout-breakpoint-sm) and
+(max-width: $layout-breakpoint-md) {
+
+  input[type=range] {
+    @include shrink-input(1.5);
+  }
+
+  .container--narrow {
+
+    input[type=range] {
+      @include shrink-input(2);
+      height: auto;
+    }
+  }
+}
+
+@media
+(max-width: $layout-breakpoint-sm) {
+
+  input[type=range] {
+    @include shrink-input(2);
+    height: auto;
+  }
+
+  .container--narrow {
+
+    input[type=range] {
+      @include shrink-input(3);
+      height: auto;
+    }
+  }
+}
+
+.container {
+
+  .color {
+
+    &--dark {
+
+      input[type=range] {
+        &::-webkit-slider-runnable-track {
+          background: rgba(255, 255, 255, $transparent);
+        }
+        &::-moz-range-track {
+          background: rgba(255, 255, 255, $transparent);
+        }
+        &::-webkit-slider-thumb {
+          background: $light;
+        }
+        &::-moz-range-thumb {
+          background: $light;
+        }
+      }
+    }
+
+    &--light {
+
+      input[type=range] {
+        &::-webkit-slider-runnable-track {
+          background: rgba(0, 0, 0, $transparent);
+        }
+        &::-moz-range-track {
+          background: rgba(0, 0, 0, $transparent);
+        }
+        &::-webkit-slider-thumb {
+          background: $dark;
+        }
+        &::-moz-range-thumb {
+          background: $dark;
+        }
+      }
+    }
+  }
+}

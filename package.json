@@ -1,0 +1,59 @@
+{
+  "name": "kolor.io",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Color inspirator.",
+  "homepage": "http://kolor.io",
+  "bugs": {
+    "url": "https://github.com/tameraydin/kolor.io/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tameraydin/kolor.io.git"
+  },
+  "scripts": {
+    "build": "NODE_ENV=development gulp build",
+    "dist": "NODE_ENV=production gulp dist"
+  },
+  "dependencies": {
+    "flux": "^2.0.1",
+    "lodash": "^3.0.1",
+    "object-assign": "^2.0.0",
+    "react": "^0.12.2",
+    "react-async": "^2.0.1",
+    "react-mini-router": "^1.0.0"
+  },
+  "devDependencies": {
+    "browserify": "^8.0.3",
+    "del": "^1.1.1",
+    "gulp": "^3.8.10",
+    "gulp-6to5": "^2.0.0",
+    "gulp-cached": "^1.0.1",
+    "gulp-jshint": "^1.9.0",
+    "gulp-jsxcs": "^0.1.6",
+    "gulp-minify-css": "^0.3.11",
+    "gulp-minify-html": "^0.1.8",
+    "gulp-react": "^2.0.0",
+    "gulp-rename": "^1.2.0",
+    "gulp-sass": "^1.2.4",
+    "gulp-uglify": "^1.0.2",
+    "gulp-usemin": "^0.3.8",
+    "gulp-util": "^3.0.2",
+    "jshint-stylish": "^1.0.0",
+    "reactify": "^0.13.2",
+    "run-sequence": "^1.0.2",
+    "vinyl-source-stream": "^1.0.0"
+  },
+  "jshintConfig": {
+    "strict": false,
+    "globalstrict": true,
+    "unused": true,
+    "predef": [
+      "require",
+      "module",
+      "document"
+    ]
+  },
+  "license": "CC-BY-NC-SA-4.0",
+  "author": "Tamer Aydin (http://tamerayd.in)"
+}

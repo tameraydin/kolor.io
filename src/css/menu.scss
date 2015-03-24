@@ -1,0 +1,132 @@
+@import '_common';
+
+$menu-height: $measure * 8;
+
+$module: '.menu';
+
+#{$module} {
+  position: fixed;
+  top: -$menu-height;
+  left: 0;
+  z-index: $menu-z-index;
+  width: 100%;
+  height: $menu-height;
+  box-shadow: 0 0 $measure rgba(0, 0, 0, $transparent);
+  background: rgba(0, 0, 0, $transparent);
+  transition: transform $transition-duration;
+  color: $light;
+  display: flex;
+  overflow: hidden;
+
+  p {
+    margin-top: $measure;
+  }
+
+  &__title {
+    font-weight: normal;
+  }
+
+  &__section {
+    padding: $measure;
+    font-size: $font-size / 1.25;
+    flex-grow: 1;
+    width: 33%;
+    box-sizing: border-box;
+
+    &:first-child {
+      padding-left: $button-size + ($measure * 2);
+    }
+
+    q {
+      font-style: italic;
+    }
+  }
+
+  &__color {
+    display: block;
+    width: $measure;
+    height: $measure;
+    font-size: 0;
+    line-height: 0;
+    float: left;
+    border: $line-width solid rgba(255, 255, 255, $transparent);
+    border-radius: $measure;
+    margin: 0 $measure / 4 $measure / 4 0;
+    transition: border-color $transition-duration;
+    cursor: pointer;
+
+    &:hover {
+      border-color: rgba(255, 255, 255, $visible);
+    }
+  }
+
+  &__share-input {
+
+    &[type="text"] {
+      outline: $line-width solid rgba(255, 255, 255, $transparent);
+      border: none;
+      width: 90%;
+      padding: 0 $line-width;
+      margin: $measure + $line-width 0 0 $line-width;
+      height: $measure;
+      background: $light;
+      opacity: $visible;
+      transition: outline-color $transition-duration;
+
+      &:hover,
+      &:focus {
+        outline-color: rgba(255, 255, 255, $visible);
+        outline-offset: 0;
+      }
+    }
+  }
+
+  &__link {
+    cursor: pointer;
+    text-decoration: underline;
+
+    &--instruction {
+      cursor: default;
+      text-decoration: none;
+    }
+  }
+
+  &__symbol {
+    display: inline-block;
+    font-size: $font-size * 1.2;
+    vertical-align: middle;
+
+    &__text {
+      display: none;
+    }
+
+    &--love {
+
+      &:after {
+        content: "\2665";
+      }
+    }
+
+    &--city {
+
+      &:after {
+        content: "\2716\2716\2716";
+      }
+    }
+  }
+
+  small {
+    cursor: default;
+    font-size: inherit;
+  }
+}
+
+.container {
+
+  &--menu {
+
+    #{$module} {
+      transform: translate(0, $menu-height);
+    }
+  }
+}

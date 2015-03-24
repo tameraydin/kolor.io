@@ -1,0 +1,143 @@
+@import '_common';
+
+$module: '.button';
+
+#{$module} {
+  position: fixed;
+  width: $button-size;
+  height: $button-size;
+  z-index: $menu-z-index + 1;
+  top: $measure;
+  cursor: pointer;
+  opacity: $transparent;
+  transition: opacity $transition-duration;
+  font-size: 0;
+  line-height: 0;
+
+  &:hover {
+    opacity: $visible !important;
+  }
+
+  &:before, &:after, &__text {
+    position: absolute;
+    content: "";
+  }
+
+  &--add, &--remove {
+
+    &:before {
+      width: $button-size;
+      height: $line-width;
+      margin-top: ($button-size - $line-width) / 2;
+    }
+
+    &:after {
+      width: $line-width;
+      height: $button-size;
+      margin-left: ($button-size - $line-width) / 2;
+    }
+  }
+
+  &--add {
+    right: $measure;
+  }
+
+  &--remove {
+    position: absolute;
+    left: $measure;
+    opacity: $hidden;
+    transform: rotate(45deg);
+  }
+
+  &--menu {
+    left: $measure;
+
+    &:before, &:after {
+      width: $button-size;
+      height: $line-width;
+      transform: translate(0, $line-width + 1);
+      transition: transform $transition-duration;
+    }
+
+    &:after {
+      transform: translate(0, ($line-width * 7) + 1);
+    }
+  }
+
+  &__text {
+    width: $button-size;
+    height: $line-width;
+    transform: translate(0, ($line-width * 4) + 1);
+    opacity: $visible;
+    transition: opacity $transition-duration;
+  }
+}
+
+.color {
+
+  &:first-child {
+
+    #{$module}--remove {
+      left: auto;
+      right: $measure;
+    }
+  }
+
+  &:hover {
+
+    #{$module} {
+      opacity: $transparent;
+    }
+  }
+
+  &--dark {
+
+    #{$module} {
+
+      &:before, &:after, &__text {
+        background: $light;
+      }
+    }
+  }
+
+  &--light {
+
+    #{$module} {
+
+      &:before, &:after, &__text {
+        background: $dark;
+      }
+    }
+  }
+}
+
+.container {
+
+  &--menu {
+
+    #{$module} {
+
+      &--add, &--remove {
+        pointer-events: none;
+        opacity: $hidden !important;
+      }
+
+      &--menu {
+
+        &:before {
+          background: $light;
+          transform: rotate(45deg) translate(9.5px, 9.5px);
+        }
+
+        &:after {
+          background: $light;
+          transform: rotate(-45deg) translate(-9.5px, 9.5px);
+        }
+
+        #{$module}__text {
+          opacity: $hidden;
+        }
+      }
+    }
+  }
+}

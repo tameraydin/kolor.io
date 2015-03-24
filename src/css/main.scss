@@ -1,0 +1,251 @@
+@import '_common';
+
+@mixin preventUserSelect() {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.app {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  font-size: $font-size;
+  background: $dark;
+}
+
+input, h2 {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: $light;
+  @include preventUserSelect();
+}
+
+input[type="text"] {
+  outline: none;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  background: none;
+  opacity: $transparent;
+}
+
+.container {
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+
+  &--multiple {
+
+    .color-picker {
+      transition: opacity $transition-duration;
+    }
+
+    .color {
+
+      .color-picker {
+        opacity: $hidden;
+      }
+
+      &:hover {
+
+        .color-picker {
+          opacity: $visible;
+        }
+      }
+    }
+  }
+
+  &--narrow {
+
+    .color {
+
+      .color-picker {
+        font-size: $font-size / 1.5;
+        max-width: 190px;
+
+        &__rgb,
+        &__hex {
+          margin-bottom: $measure / 1.5;
+        }
+      }
+    }
+  }
+
+  &--menu {
+
+    .color-picker {
+      pointer-events: none; //TODO: overlay instead?
+      opacity: $hidden !important;
+    }
+  }
+
+  &-enter {
+    opacity: $hidden;
+    transition: opacity $transition-duration;
+
+    &.container-enter-active {
+      opacity: $visible;
+    }
+  }
+}
+
+.color {
+  position: relative;
+  display: flex;
+  flex-grow: 1;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  @include preventUserSelect();
+
+  &--dark {
+
+    input[type="text"] {
+      color: $light;
+
+      &:focus {
+        border-bottom-color: $light;
+      }
+
+      &::-moz-selection {
+        background: rgba(255, 255, 255, $transparent);
+      }
+
+      &::selection {
+        background: rgba(255, 255, 255, $transparent);
+      }
+    }
+  }
+
+  &--light {
+
+    input[type="text"] {
+      color: $dark;
+
+      &:focus {
+        border-bottom-color: $dark;
+      }
+
+      &::-moz-selection {
+        background: rgba(0, 0, 0, $transparent);
+      }
+
+      &::selection {
+        background: rgba(0, 0, 0, $transparent);
+      }
+    }
+  }
+}
+
+.color-picker {
+  max-width: 270px;
+  transition: opacity $transition-duration;
+
+  &__rgb,
+  &__hex {
+    width: 100%;
+    margin-bottom: $measure;
+  }
+
+  &__rgb {
+    font-size: $font-size * 2;
+  }
+
+  &__hex {
+    font-size: $font-size * 3.5;
+    font-weight: bold;
+  }
+
+  &__range {
+    width: 100%;
+    float: left;
+    clear: left;
+
+    &__control {
+      float: left;
+      outline: none;
+      width: 73%;
+    }
+
+    &__value {
+      font-size: $font-size * 2;
+      float: left;
+      width: 22%;
+      margin-left: 5%;
+    }
+  }
+}
+
+@media
+(min-width: $layout-breakpoint-sm) and
+(max-width: $layout-breakpoint-md) {
+
+  .color {
+
+    .color-picker {
+      font-size: $font-size / 1.5;
+      max-width: 190px;
+
+      &__rgb,
+      &__hex {
+        margin-bottom: $measure / 1.5;
+      }
+    }
+  }
+
+  .container--narrow {
+
+    .color {
+
+      .color-picker {
+        font-size: $font-size / 2;
+        max-width: 135px;
+
+        &__rgb,
+        &__hex {
+          margin-bottom: $measure / 2;
+        }
+      }
+    }
+  }
+}
+
+@media
+(max-width: $layout-breakpoint-sm) {
+
+  .color {
+
+    .color-picker {
+      font-size: $font-size / 2;
+      max-width: 135px;
+
+      &__rgb,
+      &__hex {
+        margin-bottom: $measure / 2;
+      }
+    }
+  }
+
+  .container--narrow {
+
+    .color {
+
+      .color-picker {
+        font-size: $font-size / 3;
+        max-width: 90px;
+
+        &__rgb,
+        &__hex {
+          margin-bottom: $measure / 3;
+        }
+      }
+    }
+  }
+}
