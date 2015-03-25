@@ -8,6 +8,7 @@ var searchQuery = window.location.search;
 if (searchQuery && searchQuery.indexOf('_escaped_fragment_') > -1) {
   var colors = decodeURIComponent(searchQuery.split('_=')[1]);
   window.location.hash = '#!' + colors;
+  window.location.search = '';
 }
 
 React.render(
