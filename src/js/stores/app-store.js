@@ -102,41 +102,44 @@ var AppStore = assign({}, EventEmitter.prototype, {
   }
 });
 
+var _initialized = 0;
 AppDispatcher.register(function(action) {
   switch(action.actionType) {
     case AppConstants.SET_COLOR_LIST:
-      _colors.list = [];
+      if (_initialized < 2) { // TODO: fix me
+        _initialized++;
+        _colors.list = [];
 
-      var colorsLength = action.colors.length;
-      var i;
+        var i, colorsLength = action.colors.length;
 
-      for (i = 0; i < colorsLength; i++) {
-        if (i < AppConstants.MAX_COLOR &&
-          Utils.isValidHexColor(action.colors[i])) {
-          _colors.add(Utils.convertHexToRgb(action.colors[i]));
+        for (i = 0; i < colorsLength; i++) {
+          if (i < AppConstants.MAX_COLOR &&
+            Utils.isValidHexColor(action.colors[i])) {
+            _colors.add(Utils.convertHexToRgb(action.colors[i]));
+          }
         }
-      }
 
-      if (_colors.list.length === 0) {
-        var lastVisitedColors = window.localStorage.getItem(
-          AppConstants.LAST_VISITED_COLORS);
+        if (_colors.list.length === 0) {
+          var lastVisitedColors = window.localStorage.getItem(
+            AppConstants.LAST_VISITED_COLORS);
 
-        lastVisitedColors = lastVisitedColors ?
-          JSON.parse(lastVisitedColors) : lastVisitedColors;
+          lastVisitedColors = lastVisitedColors ?
+            JSON.parse(lastVisitedColors) : lastVisitedColors;
 
-        if (lastVisitedColors && lastVisitedColors.length) {
-          _colors.list = lastVisitedColors;
+          if (lastVisitedColors && lastVisitedColors.length) {
+            _colors.list = lastVisitedColors;
+
+          } else {
+            _colors.add(_getANiceColor());
+          }
 
         } else {
-          _colors.add(_getANiceColor());
+          window.localStorage.setItem(AppConstants.LAST_VISITED_COLORS,
+            JSON.stringify(_colors.list));
         }
 
-      } else {
-        window.localStorage.setItem(AppConstants.LAST_VISITED_COLORS,
-          JSON.stringify(_colors.list));
+        _updateUrlTo(_colors.getHexValues().join(','));
       }
-
-      _updateUrlTo(_colors.getHexValues().join(','));
       break;
 
     case AppConstants.ADD_COLOR:
