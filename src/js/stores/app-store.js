@@ -31,6 +31,13 @@ var Colors = function() {
 };
 
 Colors.prototype = {
+  setList: function(list) {
+    _.forEach(list, function(color) {
+      color = new Color(color);
+    });
+
+    this.list = list;
+  },
   add: function(newColorObj) {
     var index = this.list.push(new Color(newColorObj));
     return index;
@@ -70,8 +77,8 @@ var _niceHexColors = [
   {red: 153, green: 46, blue: 62}
 ];
 var _getANiceColor = function() {
-  return _niceHexColors[
-    Math.floor(Math.random() * (_niceHexColors.length))];
+  return new Color(_niceHexColors[
+    Math.floor(Math.random() * (_niceHexColors.length))]);
 };
 
 var _isUrlManipulated = false;
@@ -101,6 +108,7 @@ var AppStore = assign({}, EventEmitter.prototype, {
     return _colors.list;
   }
 });
+AppStore.setMaxListeners(0);
 
 AppDispatcher.register(function(action) {
   switch(action.actionType) {
@@ -125,7 +133,7 @@ AppDispatcher.register(function(action) {
           JSON.parse(lastVisitedColors) : lastVisitedColors;
 
         if (lastVisitedColors && lastVisitedColors.length) {
-          _colors.list = lastVisitedColors;
+          _colors.setList(lastVisitedColors);
 
         } else {
           _colors.add(_getANiceColor());
@@ -136,7 +144,7 @@ AppDispatcher.register(function(action) {
           JSON.stringify(_colors.list));
       }
 
-      _updateUrlTo(_colors.getHexValues().join(','));
+      navigate('/' + _colors.getHexValues().join(','));
       break;
 
     case AppConstants.ADD_COLOR:
