@@ -21,7 +21,7 @@
     "object-assign": "^2.0.0",
     "react": "^0.12.2",
     "react-async": "^2.0.1",
-    "react-mini-router": "^1.0.0"
+    "react-mini-router": "^1.1.1"
   },
   "devDependencies": {
     "browserify": "^8.0.3",
