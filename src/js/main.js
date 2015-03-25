@@ -2,5 +2,5 @@ var APP = require('./components/app');
 var React = require('react');
 
 React.render(
-  <APP />,
+  <APP history={true} />,
   document.getElementById('app'));
