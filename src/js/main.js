@@ -1,7 +1,9 @@
 var APP = require('./components/app');
 var React = require('react');
 
-window.location.hash = '#!/';
+if (!window.location.hash) {
+  window.location.hash = '#!/';
+}
 
 // handle escaped fragment:
 var searchQuery = window.location.search;
