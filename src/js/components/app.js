@@ -83,20 +83,21 @@ var APP =
     mixins: [RouterMixin],
     routes: {
       '/': 'home',
-      '/:color': 'home'
+      '/:params': 'home'
     },
     render: function() {
       return this.renderCurrentRoute();
     },
-    home: function(colors) {
+    home: function(params) {
+      var colors = [''];
       var menu = false;
 
-      if (colors === 'menu') {
-        menu = true;
-
-      } else {
-        colors = typeof colors === 'string' ?
-          colors.split(',') : [''];
+      if (typeof params === 'string') {
+        if (params === 'menu') {
+          menu = true;
+        } else {
+          colors = params.split(',');
+        }
       }
 
       return (
