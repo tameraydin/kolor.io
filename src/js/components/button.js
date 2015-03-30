@@ -1,5 +1,6 @@
 var React = require('react');
 var navigate = require('react-mini-router').navigate;
+var AppStore = require('../stores/app-store.js');
 var AppActions = require('../actions/app-actions');
 
 var AppButton =
@@ -8,11 +9,6 @@ var AppButton =
       type: React.PropTypes.string.isRequired,
       colorIndex: React.PropTypes.number
     },
-    getInitialState: function() {
-      return {
-        isMenuOpen: false
-      };
-    },
     _onAddClick: function() {
       AppActions.addColor();
     },
@@ -20,15 +16,8 @@ var AppButton =
       AppActions.removeColor(this.props.colorIndex);
     },
     _onMenuClick: function() {
-      if (!this.state.isMenuOpen) {
-        navigate('/menu');
-      } else {
-        window.history.back();
-      }
-
-      this.setState({
-        isMenuOpen: !this.state.isMenuOpen
-      });
+      navigate(window.location.hash.indexOf('menu') > -1 ?
+        AppStore.getLastUrl() : '/menu');
     },
     render: function() {
       var button = null;

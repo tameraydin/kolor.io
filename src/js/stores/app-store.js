@@ -81,14 +81,18 @@ var _getANiceColor = function() {
     Math.floor(Math.random() * (_niceHexColors.length))]);
 };
 
+var _lastUrl = '';
 var _isUrlManipulated = false;
 var _urlUpdateTimer = null;
-var _updateUrlTo = function(url) {
+var _updateUrlTo = function(url, emitChange, timeout) {
   clearTimeout(_urlUpdateTimer);
   _urlUpdateTimer = setTimeout(function() {
-    _isUrlManipulated = true;
-    navigate('/' + url);
-  }, AppConstants.URL_UPDATE_TIMEOUT);
+    if (!emitChange) {
+      _isUrlManipulated = true;
+    }
+    _lastUrl = '/' + url;
+    navigate(_lastUrl);
+  }, typeof timeout === 'number' ? timeout : AppConstants.URL_UPDATE_TIMEOUT);
 };
 
 var AppStore = assign({}, EventEmitter.prototype, {
@@ -106,6 +110,9 @@ var AppStore = assign({}, EventEmitter.prototype, {
   },
   getColorList: function() {
     return _colors.list;
+  },
+  getLastUrl: function() {
+    return _lastUrl;
   }
 });
 AppStore.setMaxListeners(0);
@@ -144,7 +151,7 @@ AppDispatcher.register(function(action) {
           JSON.stringify(_colors.list));
       }
 
-      navigate('/' + _colors.getHexValues().join(','));
+      _updateUrlTo(_colors.getHexValues().join(','), true, 0);
       break;
 
     case AppConstants.ADD_COLOR:
@@ -156,17 +163,17 @@ AppDispatcher.register(function(action) {
       if (_colors.list.length > AppConstants.MAX_COLOR) {
         _colors.list.splice(0, 1);
       }
-      navigate('/' + _colors.getHexValues().join(','));
+      _updateUrlTo(_colors.getHexValues().join(','), true, 0);
       break;
 
     case AppConstants.UPDATE_COLOR:
       _colors.update(action.index, action.color);
-      _updateUrlTo(_colors.getHexValues().join(','));
+      _updateUrlTo(_colors.getHexValues().join(','), false);
       break;
 
     case AppConstants.REMOVE_COLOR:
       _colors.list.splice(action.index, 1);
-      navigate('/' + _colors.getHexValues().join(','));
+      _updateUrlTo(_colors.getHexValues().join(','), true, 0);
       break;
   }
 
