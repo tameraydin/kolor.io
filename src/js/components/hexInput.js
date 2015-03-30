@@ -45,7 +45,10 @@ var HexInput = React.createClass({
     this.forceUpdate();
   },
   _selectAll: function(e) {
-    e.target.select();
+    var input = e.target;
+    setTimeout(function() {
+      input.select();
+    }, 10);
   },
   render: function() {
     return (

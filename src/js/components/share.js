@@ -27,7 +27,10 @@ var RangePicker = React.createClass({
     }, AppConstants.URL_UPDATE_TIMEOUT);
   },
   _selectAll: function(e) {
-    e.target.select();
+    var input = e.target;
+    setTimeout(function() {
+      input.select();
+    }, 10);
   },
   _revertInstructions: function() {
     this.setState({
@@ -56,7 +59,6 @@ var RangePicker = React.createClass({
           className="menu__share-input"
           type="text"
           readOnly
-          onClick={this._selectAll}
           onFocus={this._selectAll}
           onBlur={this._revertInstructions}
           value={this.state.pageUrl} />
