@@ -5,7 +5,7 @@ var AppConstants = require('../constants/app-constants');
 var RangePicker = React.createClass({
   getInitialState: function() {
     return {
-      pageUrl: '',
+      pageUrl: window.location.href,
       showCopyInstructions: false
     };
   },
