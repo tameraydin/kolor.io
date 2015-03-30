@@ -1,6 +1,5 @@
 var React = require('react/addons');
 var AppStore = require('../stores/app-store.js');
-var AppConstants = require('../constants/app-constants');
 
 var RangePicker = React.createClass({
   getInitialState: function() {
@@ -17,14 +16,9 @@ var RangePicker = React.createClass({
   },
   _updateTimer: null,
   _onChange: function() {
-    var _this = this;
-
-    clearTimeout(this._updateTimer);
-    this._updateTimer = setTimeout(function() {
-      _this.setState({
-        pageUrl: window.location.href
-      });
-    }, AppConstants.URL_UPDATE_TIMEOUT);
+    this.setState({
+      pageUrl: window.location.origin + '/#!' + AppStore.getLastUrl()
+    });
   },
   _selectAll: function(e) {
     var input = e.target;
