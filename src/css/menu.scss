@@ -1,6 +1,7 @@
 @import '_common';
 
 $menu-height: $measure * 8;
+$menu-text-margin: $measure * 3/4;
 
 $module: '.menu';
 
@@ -18,12 +19,9 @@ $module: '.menu';
   display: flex;
   overflow: hidden;
 
-  p {
-    margin-top: $measure;
-  }
-
   &__title {
     font-weight: normal;
+    margin-bottom: $menu-text-margin;
   }
 
   &__section {
@@ -42,6 +40,7 @@ $module: '.menu';
     }
   }
 
+  // HISTORY
   &__color {
     display: block;
     width: $measure;
@@ -60,6 +59,7 @@ $module: '.menu';
     }
   }
 
+  // SHARE
   &__share-input {
 
     &[type="text"] {
@@ -67,7 +67,7 @@ $module: '.menu';
       border: none;
       width: 90%;
       padding: 0 $line-width;
-      margin: $measure + $line-width 0 0 $line-width;
+      margin: $line-width 0 $menu-text-margin + $line-width $line-width;
       height: $measure;
       background: $light;
       opacity: $visible;
@@ -89,6 +89,11 @@ $module: '.menu';
       cursor: default;
       text-decoration: none;
     }
+  }
+
+  // ABOUT
+  &__text {
+    line-height: 1.2em;
   }
 
   &__symbol {
@@ -116,6 +121,10 @@ $module: '.menu';
   }
 
   small {
+    position: absolute;
+    opacity: $transparent;
+    bottom: $measure;
+    right: $measure;
     cursor: default;
     font-size: inherit;
   }
