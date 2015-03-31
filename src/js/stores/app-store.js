@@ -155,13 +155,13 @@ AppDispatcher.register(function(action) {
       break;
 
     case AppConstants.ADD_COLOR:
-      _colors.add(action.color || {
+      var length = _colors.add(action.color || {
         red: Math.floor(Math.random() * 255),
         green: Math.floor(Math.random() * 255),
         blue: Math.floor(Math.random() * 255)
       });
-      if (_colors.list.length > AppConstants.MAX_COLOR) {
-        _colors.list.splice(0, 1);
+      if (length > AppConstants.MAX_COLOR) {
+        _colors.list.pop();
       }
       _updateUrlTo(_colors.getHexValues().join(','), true, 0);
       break;
