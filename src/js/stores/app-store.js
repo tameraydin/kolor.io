@@ -161,7 +161,7 @@ AppDispatcher.register(function(action) {
         blue: Math.floor(Math.random() * 255)
       });
       if (length > AppConstants.MAX_COLOR) {
-        _colors.list.pop();
+        _colors.list.splice(length - 2, 1);
       }
       _updateUrlTo(_colors.getHexValues().join(','), true, 0);
       break;
