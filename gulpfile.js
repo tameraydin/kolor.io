@@ -124,7 +124,10 @@ gulp.task('usemin', function() {
   return gulp.src(PATH.BUILD + 'index.html')
     .pipe(usemin({
       css: [minifyCss()],
-      html: [minifyHtml({empty: true})],
+      html: [minifyHtml({
+        empty: true,
+        quotes: true
+      })],
       js: [uglify()]
     }))
     .pipe(gulp.dest(PATH.DIST));
