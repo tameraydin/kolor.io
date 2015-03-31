@@ -18,7 +18,7 @@ var Menu = React.createClass({
         </section>
         <section className="menu__section">
           <h2 className="menu__title">About</h2>
-          <p className="menu__text"><strong>kolor.io</strong> is just an experimental <a href="http://github.com/tameraydin/kolor.io" target="_blank">open-source</a> tool that allows you to do basic operations on color values, create your palettes & share it with other people.</p>
+          <p className="menu__text"><strong>kolor.io</strong> is just an experimental <a href="http://github.com/tameraydin/kolor.io" target="_blank">open-source</a> web application that allows you to do basic operations on color values, create your palettes & share it with other people.</p>
           <small>Handcrafted with <span className="menu__symbol menu__symbol--love"><span className="menu__symbol__text">love</span></span> in <span title="Amsterdam" className="menu__symbol menu__symbol--city"><span className="menu__symbol__text">Amsterdam</span></span>.
           </small>
         </section>
