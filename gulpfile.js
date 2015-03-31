@@ -15,7 +15,7 @@ var jshint = require('gulp-jshint');
 var jsxcs = require('gulp-jsxcs');
 var stylish = require('jshint-stylish');
 var to5 = require('gulp-6to5'); // this also handles JSX transform
-var packageJSON  = require('./package');
+var packageJSON = require('./package');
 var jshintConfig = packageJSON.jshintConfig;
 var react = require('gulp-react');
 var cache = require('gulp-cached');
@@ -71,7 +71,7 @@ gulp.task('imgDist', function() {
     .pipe(gulp.dest(PATH.DIST + 'img/'));
 });
 
-gulp.task('css', function () {
+gulp.task('css', function() {
   return gulp.src(SOURCE.STYLESHEETS)
     .pipe(sass()).on('error', errHandle)
     .pipe(gulp.dest(PATH.BUILD + 'css/'));
@@ -124,7 +124,10 @@ gulp.task('usemin', function() {
   return gulp.src(PATH.BUILD + 'index.html')
     .pipe(usemin({
       css: [minifyCss()],
-      html: [minifyHtml({empty: true})],
+      html: [minifyHtml({
+        empty: true,
+        quotes: true
+      })],
       js: [uglify()]
     }))
     .pipe(gulp.dest(PATH.DIST));
