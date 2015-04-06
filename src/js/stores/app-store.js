@@ -80,6 +80,13 @@ var _getANiceColor = function() {
   return new Color(_niceHexColors[
     Math.floor(Math.random() * (_niceHexColors.length))]);
 };
+var _getARandomColor = function() {
+  return new Color({
+    red: Math.floor(Math.random() * 255),
+    green: Math.floor(Math.random() * 255),
+    blue: Math.floor(Math.random() * 255)
+  });
+};
 
 var _lastUrl = '';
 var _isUrlManipulated = false;
@@ -155,11 +162,7 @@ AppDispatcher.register(function(action) {
       break;
 
     case AppConstants.ADD_COLOR:
-      var length = _colors.add(action.color || {
-        red: Math.floor(Math.random() * 255),
-        green: Math.floor(Math.random() * 255),
-        blue: Math.floor(Math.random() * 255)
-      });
+      var length = _colors.add(action.color || _getARandomColor());
       if (length > AppConstants.MAX_COLOR) {
         _colors.list.splice(length - 2, 1);
       }
@@ -173,6 +176,18 @@ AppDispatcher.register(function(action) {
 
     case AppConstants.REMOVE_COLOR:
       _colors.list.splice(action.index, 1);
+      _updateUrlTo(_colors.getHexValues().join(','), true, 0);
+      break;
+
+    case AppConstants.RANDOMIZE:
+      if (typeof action.index !== 'undefined') {
+        _colors.update(action.index, _getARandomColor());
+
+      } else {
+        for (i = 0; i < _colors.list.length; i++) {
+          _colors.update(i, _getARandomColor());
+        }
+      }
       _updateUrlTo(_colors.getHexValues().join(','), true, 0);
       break;
   }

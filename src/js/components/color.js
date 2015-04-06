@@ -41,11 +41,20 @@ var Color =
       var removeButton = (colorLength > 1) ?
           <AppButton type="remove" colorIndex={this.props.index} /> : null;
 
+      var randomButton = (colorLength > 1) ?
+          <AppButton type="random" single={true} colorIndex={this.props.index} /> : null;
+
+      var randomAllButton =
+        (i === 0) ?
+          <AppButton type="random" /> : null;
+
       return  (
         <div className={defaultClassName + backgroundClass} style={elStyle}>
           {menuButton}
           {addButton}
           {removeButton}
+          {randomButton}
+          {randomAllButton}
           {this.props.children}
         </div>
         );

@@ -26,6 +26,12 @@ var AppActions = {
       actionType: AppConstants.REMOVE_COLOR,
       index: index
     });
+  },
+  randomize: function(index) {
+    AppDispatcher.dispatch({
+      actionType: AppConstants.RANDOMIZE,
+      index: index
+    });
   }
 };
 
