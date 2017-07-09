@@ -17,7 +17,7 @@ var RangePicker = React.createClass({
   _updateTimer: null,
   _onChange: function() {
     this.setState({
-      pageUrl: window.location.origin + '/#!' + AppStore.getLastUrl()
+      pageUrl: window.location.origin + '/kolor.io/#!' + AppStore.getLastUrl()
     });
   },
   _selectAll: function(e) {
