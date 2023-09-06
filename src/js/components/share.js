@@ -57,7 +57,7 @@ var RangePicker = React.createClass({
           onBlur={this._revertInstructions}
           value={this.state.pageUrl} />
         <p>
-          <a onClick={this._showInstructions} className={copyLinkClass}>{copyLinkText}</a> | <a target="_blank" href={'http://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(this.state.pageUrl)}>Facebook</a> | <a target="_blank" href={'https://twitter.com/share?via=outofroutine&text=I+loved+these+colors!+<3&url=' + encodeURIComponent(this.state.pageUrl)}>Twitter</a>
+          <a onClick={this._showInstructions} className={copyLinkClass}>{copyLinkText}</a> | <a target="_blank" href={'http://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(this.state.pageUrl)}>Facebook</a> | <a target="_blank" href={'https://twitter.com/share?via=outofroutine&text=I+love+these+colors!+<3&url=' + encodeURIComponent(this.state.pageUrl)}>Twitter</a>
         </p>
       </div>
     );
