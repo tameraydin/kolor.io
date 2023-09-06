@@ -56,5 +56,8 @@
     ]
   },
   "license": "CC-BY-NC-SA-4.0",
-  "author": "Tamer Aydin <https://tamerayd.in>"
+  "author": {
+    "name": "Tamer Aydın",
+    "url": "https://tamerayd.in"
+  }
 }
