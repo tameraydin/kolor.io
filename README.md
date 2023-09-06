@@ -1,4 +1,4 @@
-# ![](http://tamerayd.in/kolor.io/img/favicon-32x32.png) kolor.io
+# ![](https://tameraydin.github.io/kolor.io/img/favicon-32x32.png) kolor.io
 
 It is a simple color utility app that I built while experimenting with [React](http://facebook.github.io/react/) & [Flux](http://facebook.github.io/flux/).
 
