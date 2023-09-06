@@ -4,4 +4,4 @@ It is a simple color utility app that I built while experimenting with [React](h
 
 For contribution, please see [flux-react-app](http://github.com/tameraydin/generator-flux-react-app) development instructions.
 
-[![Licensed under CC-BY-NC-SA-4.0](http://mirrors.creativecommons.org/presskit/buttons/80x15/svg/by-nc-sa.svg "Licensed under CC-BY-NC-SA-4.0")](http://creativecommons.org/licenses/by-nc-sa/4.0/)
+[![Licensed under CC-BY-NC-SA-4.0](https://mirrors.creativecommons.org/presskit/buttons/80x15/svg/by-nc-sa.svg "Licensed under CC-BY-NC-SA-4.0")](https://creativecommons.org/licenses/by-nc-sa/4.0/)
