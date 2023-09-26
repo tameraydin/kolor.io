@@ -1,5 +1,7 @@
 # ![](https://tameraydin.github.io/kolor.io/img/favicon-32x32.png) kolor.io
 
+https://tameraydin.github.io/kolor.io/
+
 It is a simple color utility app that I built while experimenting with [React](http://facebook.github.io/react/) & [Flux](http://facebook.github.io/flux/).
 
 For contribution, please see [flux-react-app](http://github.com/tameraydin/generator-flux-react-app) development instructions.
